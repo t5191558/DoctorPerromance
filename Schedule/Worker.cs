@@ -1,3 +1,6 @@
+using Quartz;
+using Quartz.Impl;
+
 namespace Schedule
 {
     public class Worker : BackgroundService
@@ -11,8 +14,11 @@ namespace Schedule
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+
+            var schedule = await new StdSchedulerFactory().GetScheduler(stoppingToken);
             while (!stoppingToken.IsCancellationRequested)
             {
+
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 await Task.Delay(1000, stoppingToken);
             }
