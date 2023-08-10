@@ -15,6 +15,7 @@ namespace Schedule
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
 
+
             var schedule = await new StdSchedulerFactory().GetScheduler(stoppingToken);
             while (!stoppingToken.IsCancellationRequested)
             {
